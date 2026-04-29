@@ -1,0 +1,20 @@
+# Java / Spring Boot
+urlshortener/target/
+urlshortener/.mvn/wrapper/maven-wrapper.jar
+urlshortener/.idea/
+urlshortener/*.iml
+urlshortener/.vscode/
+
+# Angular / Node
+url-shortener-frontend/node_modules/
+url-shortener-frontend/dist/
+url-shortener-frontend/.angular/
+url-shortener-frontend/.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+*.env.local

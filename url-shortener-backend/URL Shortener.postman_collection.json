@@ -1,0 +1,34 @@
+{
+  "info": {
+    "_postman_id": "5f0492ef-32c8-4084-bfd5-1b6c62000ac4",
+    "name": "URL Shortener",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27250355"
+  },
+  "item": [
+    {
+      "name": "Shorten",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Resolve",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Get Stats",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
