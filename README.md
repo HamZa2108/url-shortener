@@ -48,6 +48,7 @@ A minimalist full-stack URL shortener with click tracking and QR code generation
 - **Environment-based API URL switching** (dev vs production)
 - **JVM-tuned Docker image** for low-memory deployment (runs on Render's 512 MB free tier)
 - **Branded UI** with custom favicon, dark theme, and subtle entrance animations
+- **Smart short-link parsing** on the stats page — paste either a full short URL or just the code, the frontend extracts it automatically
 
 ## API Reference
 
