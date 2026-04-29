@@ -12,4 +12,11 @@ RUN ./mvnw clean package -DskipTests -B
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+ENTRYPOINT ["java", \
+  "-XX:MaxRAMPercentage=75.0", \
+  "-XX:+UseSerialGC", \
+  "-Xss512k", \
+  "-Dspring.jmx.enabled=false", \
+  "-Dserver.tomcat.threads.max=20", \
+  "-jar", "app.jar"]
