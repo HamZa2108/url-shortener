@@ -1,6 +1,11 @@
 # URL Shortener
 
-A minimalist full-stack URL shortener with click tracking — built end-to-end in a single day to demonstrate clean architecture across Java, Spring Boot, and Angular.
+A minimalist full-stack URL shortener with click tracking and QR code generation — built end-to-end in a single day to demonstrate clean architecture across Java, Spring Boot, and Angular.
+
+[![Live demo](https://img.shields.io/badge/live-demo-blue)](https://url-shortener-web-ewyz.onrender.com)
+[![Backend](https://img.shields.io/badge/api-online-green)](https://url-shortener-rxkg.onrender.com)
+[![Built with Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.6-6DB33F?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Built with Angular](https://img.shields.io/badge/Angular-21-DD0031?logo=angular&logoColor=white)](https://angular.dev)
 
 ## Live Demo
 
@@ -8,6 +13,18 @@ A minimalist full-stack URL shortener with click tracking — built end-to-end i
 - **API:** https://url-shortener-rxkg.onrender.com
 
 > First request after a few minutes of idle may take ~30 seconds — Render's free tier spins down inactive services.
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Hero](docs/screenshots/tinyurl-1-hero.png) | ![Result with QR](docs/screenshots/tinyurl-2-result.png) |
+| Empty state with branded header | Shortened result with QR code |
+
+| |
+|---|
+| ![Stats](docs/screenshots/tinyurl-3-stats.png) |
+| Per-link click stats lookup |
 
 ## Stack
 
@@ -21,14 +38,16 @@ A minimalist full-stack URL shortener with click tracking — built end-to-end i
 
 ## Features
 
-- Generate short URLs using Base62 encoding of auto-incrementing database IDs (collision-free, no random retries)
-- Public redirect endpoint with per-link click counter
-- Stats lookup endpoint exposing click count and creation timestamp
-- Reactive form validation with inline error messages
-- Copy-to-clipboard with feedback state
-- Configurable CORS for safe cross-origin deployment
-- Environment-based API URL switching (dev vs production)
-- JVM-tuned Docker image for low-memory deployment (runs on Render's 512 MB free tier)
+- **Short URLs** generated using Base62 encoding of auto-incrementing database IDs (collision-free, no random retries)
+- **Click tracking** with per-link counter incremented on each redirect
+- **Stats lookup endpoint** exposing click count and creation timestamp
+- **QR code generation** for each short link with one-click PNG download
+- **Reactive form validation** with inline error messages
+- **Copy-to-clipboard** with feedback state
+- **Configurable CORS** for safe cross-origin deployment
+- **Environment-based API URL switching** (dev vs production)
+- **JVM-tuned Docker image** for low-memory deployment (runs on Render's 512 MB free tier)
+- **Branded UI** with custom favicon, dark theme, and subtle entrance animations
 
 ## API Reference
 
@@ -62,6 +81,7 @@ curl -X POST https://url-shortener-rxkg.onrender.com/api/shorten \
 - **Zoneless change detection** on the frontend uses Angular Signals for state — no Zone.js polyfill, smaller bundle, faster runtime.
 - **Multi-stage Dockerfile** with JDK for build, JRE-only for runtime — smaller image, faster cold starts.
 - **JVM-tuned for small containers**: Serial GC, capped heap percentage, reduced thread stack, disabled JMX. Standard production tuning for 512 MB-class deployments.
+- **Frontend QR generation** keeps load off the backend — codes are computed in the browser via the `qrcode` library and rendered as PNG data URLs.
 
 ## Run Locally
 
@@ -107,7 +127,7 @@ url-shortener/
 │   └── src/main/resources/application.yml
 └── url-shortener-frontend/        Angular frontend
     └── src/app/
-        ├── components/shortener/  URL submission + result display
+        ├── components/shortener/  URL submission, QR generation, copy
         ├── components/stats/      Click stats lookup
         └── services/              API client
 ```
@@ -126,9 +146,9 @@ Both services are deployed on Render's free tier:
 - Link expiration timestamps
 - Click analytics chart (clicks over time)
 - Rate limiting per IP at the redirect endpoint
-- QR code generation for each short link
 - API key authentication for the shorten endpoint
 - Migration from H2 to Testcontainers for integration tests
+- Recent links history (using `localStorage` on the client)
 
 ## Author
 
